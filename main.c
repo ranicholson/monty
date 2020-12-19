@@ -5,23 +5,29 @@
  * @argv: this is the argument vector with is a doubly array.
  * Return: is an integer
  */
+
+int ln_count = 0;
+
 int main(int argc, char **argv)
 {
-	char *line = NULL;
+	char *line = NULL, *opcode = NULL, *num = NULL;
 	size_t bufsize;
-	ssize_t read;
-	int ln_count = 1;
+	int read = 0;
 
 	FILE *fd = fopen(argv[1], "r");
 	if (fd == NULL || argc > 2)
 	{
 		perror("USAGE: monty file");
 	}
-	while(getline(&line, &bufsize, fd) != -1)
+	read = getline(&line, &bufsize, fd);
+	while (read >= 0)
 	{
+		opcode = strtok(line, " ");
+		num = strtok(NULL, " ");
+	        func_select(opcode, num)
 		ln_count++;
-
-	}		
+		read = getline(&line, &bufsize, fd);
+	}
 	fclose(fd);
 	free(line);
 	return (0);
