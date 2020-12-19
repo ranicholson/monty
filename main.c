@@ -6,25 +6,28 @@
  * Return: is an integer
  */
 
-int ln_count = 0;
-
 int main(int argc, char **argv)
 {
 	char *line = NULL, *opcode = NULL, *num = NULL;
+	void (*func_ptr)(stack_t **, unsigned int);
+	unsigned int ln_count = 0;
 	size_t bufsize;
+	stack_t *stack;
 	int read = 0;
 
 	FILE *fd = fopen(argv[1], "r");
 	if (fd == NULL || argc > 2)
 	{
 		perror("USAGE: monty file");
+		exit(EXIT_FAILURE);
 	}
 	read = getline(&line, &bufsize, fd);
 	while (read >= 0)
 	{
 		opcode = strtok(line, " ");
 		num = strtok(NULL, " ");
-	        func_select(opcode, num)
+	    func_ptr = func_select(opcode);
+		func_ptr(&stack, ln_count);
 		ln_count++;
 		read = getline(&line, &bufsize, fd);
 	}

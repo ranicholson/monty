@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,8 +38,8 @@ typedef struct instruction_s
 char *_tokenize(char *line);
 
 extern int ln_count;
-int func_select(char *opcode, char *num);
-
+void (*func_select(char *opcode))(stack_t **, unsigned int);
+void push_func(stack_t **stack, unsigned int ln_count);
 
 
 #endif
