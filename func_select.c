@@ -15,7 +15,7 @@ void (*func_select(char *opcode))(stack_t **, unsigned int)
 	};
 	while (ops[idx].opcode)
 	{
-		if (ops[idx].opcode == opcode)
+		if (strcmp(opcode, ops[idx].opcode) == 0)
 		{
 			return (ops[idx].f);
 		}
