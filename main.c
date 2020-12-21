@@ -49,8 +49,10 @@ int main(int argc, char **argv)
 		func_ptr = func_select(opcode);
 		if (func_ptr == NULL)
 		{
+			opcode = strdup(opcode);
 			free(line);
 			fclose(fd);
+			free_stack(stack);
 			invalid_opcode(opcode, ln_count);
 		}
 		func_ptr(&stack, ln_count);

@@ -44,5 +44,6 @@ void invalid_opcode(char *opcode, unsigned int ln_count)
 	}
 
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
+	free(opcode);
 	exit(EXIT_FAILURE);
 } 
