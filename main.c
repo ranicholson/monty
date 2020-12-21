@@ -8,7 +8,7 @@
 int num = 0;
 int main(int argc, char **argv)
 {
-	char *line = NULL, *opcode = NULL, *tmp_num = NULL;
+	char *line = NULL, *opcode = NULL, *tmp_num = NULL, *delim = " \t\n";
 	unsigned int ln_count = 1;
 	size_t bufsize;
 	stack_t *stack;
@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 
 	if (fd == NULL)
 		open_error(argv[1]);
-
 	read = getline(&line, &bufsize, fd);
 	node_chk = stack_init(&stack, 0);
 	if (node_chk == -1)
@@ -33,8 +32,13 @@ int main(int argc, char **argv)
 	}
 	for (; read >= 0; ln_count++)
 	{
-		opcode = strtok(line, " \t\n");
-		tmp_num = strtok(NULL, " ");
+		if(strcmp(line, "\n")== 0)
+		{
+			read = getline(&line, &bufsize, fd);
+			continue;
+		}
+		opcode = strtok(line, delim);
+		tmp_num = strtok(NULL, delim);
 /*		printf("opcode : %s || temp_num: %s\n", opcode, tmp_num);*/
 		if (op_check(opcode, tmp_num) == -1)
 		{
@@ -70,3 +74,9 @@ int main(int argc, char **argv)
 	free_stack(stack);
 	return (0);
 }
+/**
+ *
+ *
+ *
+ *
+ */
