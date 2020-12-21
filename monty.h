@@ -41,6 +41,7 @@ void malloc_error(void);
 void open_error(char *arg);
 void invalid_opcode(char *opcode, unsigned int ln_count);
 void free_stack(stack_t *head);
+int op_check(char *opcode, char *num);
 /*_____GLOBAL_VAR___________________________*/
 extern int num;
 /*________OP_FUNCTIONS__________*/
