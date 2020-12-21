@@ -35,6 +35,15 @@ int main(int argc, char **argv)
 	{
 		opcode = strtok(line, " \t\n");
 		tmp_num = strtok(NULL, " ");
+		printf("opcode : %s || temp_num: %s\n", opcode, tmp_num);
+		if (op_check(opcode, tmp_num) == -1)
+		{
+			free_stack(stack);
+			opcode = strdup(opcode);
+			free(line);
+			fclose(fd);
+			invalid_opcode(opcode, ln_count);
+		}
 		if (tmp_num != NULL)
 			num = atoi(tmp_num);
 		func_ptr = func_select(opcode);
