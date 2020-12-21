@@ -9,13 +9,8 @@ int num;
 void op_push(stack_t **head, unsigned int n)
 {
 	stack_t *n_node, *tmp = *head;
-
+	(void)n;
 /*	printf("n = [%d]\n", n);*/
-	if (n == 1)
-	{
-		tmp->n = num;
-		return;
-	}
 	n_node = malloc(sizeof(stack_t));
 	if (n_node == NULL)
 	{

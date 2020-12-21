@@ -12,7 +12,7 @@ void op_pall(stack_t **h, unsigned int n)
     if (n == 1)
 	    return;
 
-    while (head != NULL)
+    while (head->next != NULL)
     {
 	    printf("%d\n", head->n);
 	    head = head->next;
