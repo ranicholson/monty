@@ -54,6 +54,13 @@ int main(int argc, char **argv)
 			invalid_opcode(opcode, ln_count);
 		}
 		func_ptr(&stack, ln_count);
+/*		printf("ln_count = [%d] ", ln_count);*/
+		if (stack == NULL)
+		{
+			free(line);
+			fclose(fd);
+			malloc_error();
+		}
 		read = getline(&line, &bufsize, fd);
 	}
 	fclose(fd);
