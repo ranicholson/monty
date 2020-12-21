@@ -36,6 +36,12 @@ void open_error(char *arg)
  */
 void invalid_opcode(char *opcode, unsigned int ln_count)
 {
+	if (strcmp(opcode, "push") == 0)
+	{
+		fprintf(stderr, "L:%d: usage: push integer\n", ln_count);
+		exit (EXIT_FAILURE);
+	}
+
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
 	exit(EXIT_FAILURE);
 } 
