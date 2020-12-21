@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 	{
 		opcode = strtok(line, " \t\n");
 		tmp_num = strtok(NULL, " ");
-		printf("opcode : %s || temp_num: %s\n", opcode, tmp_num);
+/*		printf("opcode : %s || temp_num: %s\n", opcode, tmp_num);*/
 		if (op_check(opcode, tmp_num) == -1)
 		{
 			free_stack(stack);
