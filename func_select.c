@@ -8,9 +8,10 @@
 void (*func_select(char *opcode))(stack_t **, unsigned int)
 {
 	int idx = 0;
+
 	instruction_t ops[] = {
-		{"push", push_func},
-		{"pall", push_func},
+		{"push", op_push},
+		{"pall", op_pall},
 		{'\0', NULL}
 	};
 	while (ops[idx].opcode)
