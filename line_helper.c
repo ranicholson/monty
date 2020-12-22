@@ -13,10 +13,11 @@ int line_helper(FILE *fd, stack_t **stack)
 	unsigned int ln_count = 1;
 	size_t bufsize;
 	int read = 0, helper1 = 0;
-
+	
 	read = getline(&line, &bufsize, fd);
 	for (; read >= 0; ln_count++)
 	{
+		printf("inside line_helper loop\n");
 		helper1 = monty_helper(ln_count, line, stack);
 		if (strcmp(line, "\n") == 0 || line == NULL || helper1 == -1)
 		{
@@ -33,6 +34,7 @@ int line_helper(FILE *fd, stack_t **stack)
 		if (helper1 == -3)
 		{
 			opcode = strtok(opcode, " \t\n\a\b\v\f\r");
+			printf("This is opcode: [%s]\n", opcode);
 			if (strcmp(opcode, "pint") == 0)
 			{
 				opcode = strdup(opcode);

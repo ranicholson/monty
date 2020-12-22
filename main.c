@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	helper = line_helper(fd, &stack);
-
+	printf("inside main after helper is assigned.\n");
 	if (helper == -1)
 	{
 		fclose(fd);
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	return (0);
 }
 /**
- * monty_helper -This is a helper function to help execute the main.
+ * monty_helper - This is a helper function to help execute the main.
  * @ln_count: line count
  * @line: This is the line or current command
  * @stack: this is a refrence to the stack linked list
@@ -51,9 +51,9 @@ int monty_helper(unsigned int ln_count, char *line, stack_t **stack)
 {
 	char *opcode = NULL, *tmp_num = NULL,  *delim = " \t\n\a\b\v\f\r";
 	void (*func_ptr)(stack_t **, unsigned int);
-
+	printf("inside monty_helper\n");
 	opcode = strtok(line, delim);
-
+	printf("opcode in monty helper: [%s]\n", opcode);
 	if (opcode == NULL)
 		return (-1);
 	tmp_num = strtok(NULL, delim);
