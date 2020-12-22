@@ -8,7 +8,7 @@
 int num = 0;
 int main(int argc, char **argv)
 {
-	char *line = NULL;
+	char *line = NULL, *opcode = NULL;
 	unsigned int ln_count = 1;
 	size_t bufsize;
 	stack_t *stack;
@@ -31,22 +31,20 @@ int main(int argc, char **argv)
 	}
 	for (; read >= 0; ln_count++)
 	{
-		if(strcmp(line, "\n") == 0)
+		if (strcmp(line, "\n") == 0)
 		{
 			read = getline(&line, &bufsize, fd);
 			continue;
 		}
-//		opcode = strtok(line, delim);
 		helper1 = monty_helper(ln_count, line, stack);
-		if(helper1 == "-1")
+		if (helper1 == -1)
 		{
 			read = getline(&line, &bufsize, fd);
 			continue;
 		}
-//		tmp_num = strtok(NULL, delim);
 		if (helper1 == -2)
 		{
-			free(line);
+			opcode = strdup(opcode);
 			fclose(fd);
 			invalid_opcode(opcode, ln_count);
 		}
@@ -71,25 +69,28 @@ int main(int argc, char **argv)
  */
 int monty_helper(unsigned int ln_count, char *line, stack_t *stack)
 {
-	char *opcode = NULL, tmp_num = NULL,  *delim = " \t\n\a\b\v\f\r";
+	char *opcode = NULL, *tmp_num = NULL,  *delim = " \t\n\a\b\v\f\r";
 	void (*func_ptr)(stack_t **, unsigned int);
 
 	opcode = strtok(line, delim);
 	if (opcode == NULL)
 		return (-1);
+
 	tmp_num = strtok(NULL, delim);
+
 	if (op_check(opcode, tmp_num) == -1)
 	{
 		free_stack(stack);
-		opcode = strdup(opcode);
 		return (-2);
 	}
+
 	if (tmp_num != NULL)
 		num = atoi(tmp_num);
+
 	func_ptr = func_select(opcode);
+
 	if (func_ptr == NULL)
 	{
-		opcode = strdup(opcode);
 		free_stack(stack);
 		return (-2);
 	}

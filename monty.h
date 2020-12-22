@@ -35,6 +35,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
 /*___________Helper_Functions_____________*/
 char *_tokenize(char *line);
 void arg_error(void);
@@ -43,8 +44,11 @@ void open_error(char *arg);
 void invalid_opcode(char *opcode, unsigned int ln_count);
 void free_stack(stack_t *head);
 int op_check(char *opcode, char *num);
+int monty_helper(unsigned int ln_count, char *line, stack_t *stack);
+
 /*_____GLOBAL_VAR___________________________*/
 extern int num;
+
 /*________OP_FUNCTIONS__________*/
 void (*func_select(char *opcode))(stack_t **, unsigned int);
 void push_func(stack_t **stack, unsigned int ln_count);
