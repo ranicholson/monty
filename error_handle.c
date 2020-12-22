@@ -1,16 +1,16 @@
 #include "monty.h"
 /**
  * malloc_error - This function handles errors for mallocs
- * @ln_count: this is the line count that the error occured
- * @code: This is an integer that corresponds with the error
+ * Return: -1 to indicate error
  */
 int malloc_error(void)
 {
-        fprintf(stderr, "Error: malloc failed\n");
-        return (-1);
+	fprintf(stderr, "Error: malloc failed\n");
+	return (-1);
 }
 /**
- * arg_error - This function is called when not enought arguments are found or no file is given
+ * arg_error - This function is called when not enought arguments are found or
+ * no file is given
  * Return: void
  */
 void arg_error(void)
@@ -20,6 +20,7 @@ void arg_error(void)
 }
 /**
  * open_error - This function is for when a file cannot be opened.
+ * @arg: file name
  * Return: void
  */
 void open_error(char *arg)
@@ -29,7 +30,8 @@ void open_error(char *arg)
 
 }
 /**
- * invalid_opcode - This function is called when an opcode does not match the struct opcode
+ * invalid_opcode - This function is called when an opcode does not match the
+ * struct opcode
  * @opcode: This is the code that preforms a corresponding operation
  * @ln_count: this is the corresponding line that contained an invalid opcode
  * Return: Void

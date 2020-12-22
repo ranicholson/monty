@@ -1,8 +1,10 @@
 #include "monty.h"
 
 /**
- *
- *
+ * line_helper - function to get lines from file
+ * @fd: file descriptor to pull line from
+ * @stack: stack
+ * Return: -1 upon error or 0 if successful
  */
 
 int line_helper(FILE *fd, stack_t **stack)
@@ -40,5 +42,6 @@ int line_helper(FILE *fd, stack_t **stack)
 		}
 		read = getline(&line, &bufsize, fd);
 	}
+	free(line);
 	return (0);
 }

@@ -18,7 +18,7 @@ int op_check(char *opcode, char *num)
 
 		if (num[0] == '-' || num[0] == '+')
 			idx++;
-		while(num[idx])
+		while (num[idx])
 		{
 			tmp = isdigit(num[idx]);
 			if (tmp == 0)
