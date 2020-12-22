@@ -17,26 +17,28 @@ int line_helper(FILE *fd, stack_t **stack)
 	read = getline(&line, &bufsize, fd);
 	for (; read >= 0; ln_count++)
 	{
-		if (strcmp(line, "\n") == 0 || line == NULL)
-		{
-			read = getline(&line, &bufsize, fd);
-			continue;
-		}
 		helper1 = monty_helper(ln_count, line, stack);
-		if (helper1 == -1)
+		if (strcmp(line, "\n") == 0 || line == NULL || helper1 == -1)
 		{
 			read = getline(&line, &bufsize, fd);
 			continue;
 		}
 		if (helper1 == -2)
 		{
-			opcode = strtok(line, "\t\n\a\b\v\f\r");
+			opcode = strtok(line, " \t\n\a\b\v\f\r");
 			opcode = strdup(opcode);
 			free(line);
 			return (invalid_opcode(opcode, ln_count));
 		}
 		if (helper1 == -3)
 		{
+			opcode = strtok(opcode, " \t\n\a\b\v\f\r");
+			if (strcmp(opcode, "pint") == 0)
+			{
+				opcode = strdup(opcode);
+				free(line);
+				return (invalid_opcode(opcode, ln_count));
+			}
 			free(line);
 			return (malloc_error());
 		}
