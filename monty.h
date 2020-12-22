@@ -47,6 +47,8 @@ int op_check(char *opcode, char *num);
 int monty_helper(unsigned int ln_count, char *line, stack_t **stack);
 int line_helper(FILE *fd, stack_t **stack);
 int str_cmp_opcode(char *opcode2);
+int invalid_opcode2(char *opcode, unsigned int ln_count);
+
 /*_____GLOBAL_VAR___________________________*/
 extern int num;
 
@@ -62,5 +64,6 @@ void op_swap(stack_t **stack, unsigned int ln_count);
 void op_add(stack_t **stack, unsigned int ln_count);
 void op_nop(stack_t **stack, unsigned int ln_count);
 void op_sub(stack_t **stack, unsigned int ln_count);
+void op_div(stack_t **stack, unsigned int ln_count);
 
 #endif

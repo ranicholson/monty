@@ -66,6 +66,8 @@ int str_cmp_opcode(char *opcode2)
 		return (-1);
 	if (strcmp(opcode2, "sub") == 0)
 		return (-1);
+	if (strcmp(opcode2, "div") == 0)
+		return (-1);
 
 	return (0);
 }

@@ -56,24 +56,38 @@ int invalid_opcode(char *opcode, unsigned int ln_count)
 		free(opcode);
 		return (-1);
 	}
-	if (strcmp(opcode, "swap") == 0)
+	if (strcmp(opcode, "swap") == 0 || strcmp(opcode, "add") == 0 ||
+	    strcmp(opcode, "sub") == 0)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", ln_count);
+		fprintf(stderr, "L%d: can't %s, stack too short\n", ln_count,
+			opcode);
 		free(opcode);
 		return (-1);
 	}
-	if (strcmp(opcode, "add") == 0)
+	if (strcmp(opcode, "div") == 0)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", ln_count);
+		if (num == 0)
+		{
+			fprintf(stderr, "L%d: division by zero\n", ln_count);
+			free(opcode);
+			return (-1);
+		}
+		fprintf(stderr, "L%d: can't div, stack too short\n", ln_count);
 		free(opcode);
 		return (-1);
 	}
-	if (strcmp(opcode, "sub") == 0)
-	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", ln_count);
-		free(opcode);
-		return (-1);
-	}
+	return (invalid_opcode2(opcode, ln_count));
+}
+
+/**
+ * invalid_opcode2 - checking for more errors
+ * @opcode: opcode to check for
+ * @ln_count: line where error happened
+ * Return: -1 for error
+ */
+
+int invalid_opcode2(char *opcode, unsigned int ln_count)
+{
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
 	free(opcode);
 	return (-1);

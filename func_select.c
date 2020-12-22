@@ -17,6 +17,7 @@ void (*func_select(char *opcode))(stack_t **, unsigned int)
 		{"add", op_add},
 		{"nop", op_nop},
 		{"sub", op_sub},
+		{"div", op_div},
 		{'\0', NULL}
 	};
 	while (ops[idx].opcode)
