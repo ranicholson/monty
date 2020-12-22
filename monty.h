@@ -56,5 +56,6 @@ void push_func(stack_t **stack, unsigned int ln_count);
 void op_push(stack_t **head, unsigned int n);
 int stack_init(stack_t **head, unsigned int n);
 void op_pall(stack_t **h, unsigned int n);
+void op_pint(stack_t **stack, unsigned int ln_count);
 
 #endif
