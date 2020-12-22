@@ -15,11 +15,11 @@ int op_check(char *opcode, char *num)
 	{
 		if (num == NULL)
 			return (-1);
-		while (num[idx])
-		{
-			if (idx == 0 && (num[idx] == '-' || num[idx] == '+'))
-				continue;
 
+		if (num[0] == '-' || num[0] == '+')
+			idx++;
+		while(num[idx])
+		{
 			tmp = isdigit(num[idx]);
 			if (tmp == 0)
 				return (-1);
