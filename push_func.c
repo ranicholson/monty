@@ -5,7 +5,7 @@
  * @n: this is the data that needs to be inserted in the linked list
  * Return: On success return the address of the new element and NULL on failure
  */
-int num;
+
 void op_push(stack_t **head, unsigned int n)
 {
 	stack_t *n_node, *tmp = *head;
@@ -22,7 +22,7 @@ void op_push(stack_t **head, unsigned int n)
 	n_node->next = tmp;
 	tmp->prev = n_node;
 	n_node->prev = NULL;
-	
+
 	*head = n_node;
 	return;
 }
