@@ -38,7 +38,7 @@ void invalid_opcode(char *opcode, unsigned int ln_count)
 {
 	if (strcmp(opcode, "push") == 0)
 	{
-		fprintf(stderr, "L:%d: usage: push integer\n", ln_count);
+		fprintf(stderr, "L%d: usage: push integer\n", ln_count);
 		free(opcode);
 		exit (EXIT_FAILURE);
 	}
