@@ -12,7 +12,7 @@ int line_helper(FILE *fd, stack_t **stack)
 	char *line = NULL, *opcode = NULL;
 	unsigned int ln_count = 1;
 	size_t bufsize;
-	int read = 0, helper1 = 0;
+	int read = 0, helper1 = 0, opcode2;
 
 	read = getline(&line, &bufsize, fd);
 	for (; read >= 0; ln_count++)
@@ -33,7 +33,8 @@ int line_helper(FILE *fd, stack_t **stack)
 		if (helper1 == -3)
 		{
 			opcode = strtok(line, " \t\n\a\b\v\f\r");
-			if (strcmp(opcode, "pint") == 0 || strcmp(opcode, "pop") == 0)
+			opcode2 = str_cmp_opcode(opcode);
+			if (opcode2 == -1)
 			{
 				opcode = strdup(opcode);
 				free(line);
@@ -45,5 +46,21 @@ int line_helper(FILE *fd, stack_t **stack)
 		read = getline(&line, &bufsize, fd);
 	}
 	free(line);
+	return (0);
+}
+/**
+ * str_cmp_opcode - This comapres to see if the command matched any
+ * of the strings for error handling
+ * @opcode2: this if the opcode that we are comapring
+ * Return: char* with opcode that is a match
+ */
+int str_cmp_opcode(char *opcode2)
+{
+	if (strcmp(opcode2, "pint") == 0)
+		return (-1);
+	if (strcmp(opcode2, "pop") == 0)
+		return (-1);
+	if (strcmp(opcode2, "swap") == 0)
+		return (-1);
 	return (0);
 }

@@ -46,6 +46,7 @@ void free_stack(stack_t *head);
 int op_check(char *opcode, char *num);
 int monty_helper(unsigned int ln_count, char *line, stack_t **stack);
 int line_helper(FILE *fd, stack_t **stack);
+int str_cmp_opcode(char *opcode2);
 /*_____GLOBAL_VAR___________________________*/
 extern int num;
 
@@ -57,5 +58,6 @@ int stack_init(stack_t **head, unsigned int n);
 void op_pall(stack_t **h, unsigned int n);
 void op_pint(stack_t **stack, unsigned int ln_count);
 void op_pop(stack_t **stack, unsigned int ln_count);
+void op_swap(stack_t **stack, unsigned int ln_count);
 
 #endif

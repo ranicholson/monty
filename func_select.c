@@ -13,6 +13,7 @@ void (*func_select(char *opcode))(stack_t **, unsigned int)
 		{"pall", op_pall},
 		{"pint", op_pint},
 		{"pop", op_pop},
+		{"swap", op_swap},
 		{'\0', NULL}
 	};
 	while (ops[idx].opcode)
