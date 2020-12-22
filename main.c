@@ -1,12 +1,13 @@
 #include "monty.h"
+
+int num;
+
 /**
  * main - calls other function that help translate opcode from a file
  * @argc: this is the argument count
  * @argv: this is the argument vector with is a doubly array.
  * Return: is an integer
  */
-
-int num;
 
 int main(int argc, char **argv)
 {
