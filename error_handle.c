@@ -64,7 +64,7 @@ int invalid_opcode(char *opcode, unsigned int ln_count)
 	}
 	if (strcmp(opcode, "add") == 0)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", ln_count);
+		fprintf(stderr, "L%d: can't add, stack too short\n", ln_count);
 		free(opcode);
 		return (-1);
 	}
