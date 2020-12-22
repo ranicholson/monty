@@ -8,6 +8,7 @@
 void op_swap(stack_t **stack, unsigned int ln_count)
 {
 	stack_t *head = *stack, *tmp = NULL, *current = *stack;
+	(void) ln_count;
 
 	if (head->next->next == NULL && head->prev == NULL)
 	{
