@@ -14,5 +14,4 @@ void op_pall(stack_t **h, unsigned int n)
 		printf("%d\n", head->n);
 		head = head->next;
 	}
-	return;
 }

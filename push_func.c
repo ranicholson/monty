@@ -10,19 +10,19 @@ void op_push(stack_t **head, unsigned int n)
 {
 	stack_t *n_node, *tmp = *head;
 	(void)n;
-/*	printf("n = [%d]\n", n);*/
+
 	n_node = malloc(sizeof(stack_t));
 	if (n_node == NULL)
 	{
 		free_stack(*head);
 		*head = NULL;
-		return;
 	}
-	n_node->n = num;
-	n_node->next = tmp;
-	tmp->prev = n_node;
-	n_node->prev = NULL;
-
-	*head = n_node;
-	return;
+	else if
+	{
+		n_node->n = num;
+		n_node->next = tmp;
+		tmp->prev = n_node;
+		n_node->prev = NULL;
+		*head = n_node;
+	}
 }
