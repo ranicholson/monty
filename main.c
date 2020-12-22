@@ -8,13 +8,12 @@
 int num = 0;
 int main(int argc, char **argv)
 {
-	char *line = NULL, *opcode = NULL, *tmp_num = NULL, *delim = " \t\n\a\b\v\f\r";
+	char *line = NULL;
 	unsigned int ln_count = 1;
 	size_t bufsize;
 	stack_t *stack;
-	int read = 0, node_chk = 0;
+	int read = 0, node_chk = 0, helper1 = 0;
 	FILE *fd = NULL;
-	void (*func_ptr)(stack_t **, unsigned int);
 
 	if (argc != 2)
 		arg_error();
@@ -37,38 +36,22 @@ int main(int argc, char **argv)
 			read = getline(&line, &bufsize, fd);
 			continue;
 		}
-		opcode = strtok(line, delim);
-		if(opcode == NULL)
+//		opcode = strtok(line, delim);
+		helper1 = monty_helper(ln_count, line, stack);
+		if(helper1 == "-1")
 		{
 			read = getline(&line, &bufsize, fd);
 			continue;
 		}
-		tmp_num = strtok(NULL, delim);
-/*		printf("opcode : [%s] || temp_num: [%s]\n", opcode, tmp_num);*/
-		if (op_check(opcode, tmp_num) == -1)
+//		tmp_num = strtok(NULL, delim);
+		if (helper1 == -2)
 		{
-			free_stack(stack);
-			opcode = strdup(opcode);
 			free(line);
 			fclose(fd);
 			invalid_opcode(opcode, ln_count);
 		}
-		if (tmp_num != NULL)
-			num = atoi(tmp_num);
-		func_ptr = func_select(opcode);
-		if (func_ptr == NULL)
+		if (helper1 == -3)
 		{
-			opcode = strdup(opcode);
-			free(line);
-			fclose(fd);
-			free_stack(stack);
-			invalid_opcode(opcode, ln_count);
-		}
-		func_ptr(&stack, ln_count);
-/*		printf("ln_count = [%d] ", ln_count);*/
-		if (stack == NULL)
-		{
-			free(line);
 			fclose(fd);
 			malloc_error();
 		}
@@ -80,8 +63,41 @@ int main(int argc, char **argv)
 	return (0);
 }
 /**
- *
- *
- *
- *
+ * monty_helper -This is a helper function to help execute the main.
+ * @ln_count: line count
+ * @line: This is the line or current command
+ * @stack: this is a refrence to the stack linked list
+ * Return: is -1 for failure and 0 for success
  */
+int monty_helper(unsigned int ln_count, char *line, stack_t *stack)
+{
+	char *opcode = NULL, tmp_num = NULL,  *delim = " \t\n\a\b\v\f\r";
+	void (*func_ptr)(stack_t **, unsigned int);
+
+	opcode = strtok(line, delim);
+	if (opcode == NULL)
+		return (-1);
+	tmp_num = strtok(NULL, delim);
+	if (op_check(opcode, tmp_num) == -1)
+	{
+		free_stack(stack);
+		opcode = strdup(opcode);
+		return (-2);
+	}
+	if (tmp_num != NULL)
+		num = atoi(tmp_num);
+	func_ptr = func_select(opcode);
+	if (func_ptr == NULL)
+	{
+		opcode = strdup(opcode);
+		free_stack(stack);
+		return (-2);
+	}
+	func_ptr(&stack, ln_count);
+	if (stack == NULL)
+	{
+		free(line);
+		return (-3);
+	}
+	return (0);
+}
