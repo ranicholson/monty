@@ -1,8 +1,0 @@
-#include "monty.h"
-
-/**
- *
- *
- */
-
-int monty_pal(char *line, int ln_count, 
