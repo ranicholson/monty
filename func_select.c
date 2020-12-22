@@ -11,6 +11,7 @@ void (*func_select(char *opcode))(stack_t **, unsigned int)
 	instruction_t ops[] = {
 		{"push", op_push},
 		{"pall", op_pall},
+		{"pint", op_pint},
 		{'\0', NULL}
 	};
 	while (ops[idx].opcode)
