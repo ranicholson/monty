@@ -33,7 +33,7 @@ int line_helper(FILE *fd, stack_t **stack)
 		if (helper1 == -3)
 		{
 			opcode = strtok(line, " \t\n\a\b\v\f\r");
-			if (strcmp(opcode, "pint") == 0)
+			if (strcmp(opcode, "pint") == 0 || strcmp(opcode, "pop") == 0)
 			{
 				opcode = strdup(opcode);
 				free(line);
