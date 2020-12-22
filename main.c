@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 	}
 	for (; read >= 0; ln_count++)
 	{
-		if(strcmp(line, "\n")== 0)
+		if(strcmp(line, "\n") == 0)
 		{
 			read = getline(&line, &bufsize, fd);
 			continue;
