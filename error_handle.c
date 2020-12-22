@@ -44,7 +44,12 @@ int invalid_opcode(char *opcode, unsigned int ln_count)
 		free(opcode);
 		return (-1);
 	}
-
+	if (strcmp(opcode, "pint") == 0)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", ln_count);
+		free(opcode);
+		return (-1);
+	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
 	free(opcode);
 	return (-1);
