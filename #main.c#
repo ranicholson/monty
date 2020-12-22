@@ -32,6 +32,12 @@ int main(int argc, char **argv)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
+	if (helper1 == -2)
+	{
+		free(line);
+		fclose(fd);
+		invalid_opcode(opcode, ln_count);
+	}
 
 	fclose(fd);
 	free_stack(stack);
@@ -70,6 +76,7 @@ int monty_helper(unsigned int ln_count, char *line, stack_t **stack)
 	func_ptr(stack, ln_count);
 	if (stack == NULL)
 	{
+		free(line);
 		return (-3);
 	}
 	return (0);

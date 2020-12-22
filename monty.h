@@ -39,12 +39,13 @@ typedef struct instruction_s
 /*___________Helper_Functions_____________*/
 char *_tokenize(char *line);
 void arg_error(void);
-void malloc_error(void);
+int malloc_error(void);
 void open_error(char *arg);
-void invalid_opcode(char *opcode, unsigned int ln_count);
+int invalid_opcode(char *opcode, unsigned int ln_count);
 void free_stack(stack_t *head);
 int op_check(char *opcode, char *num);
-int monty_helper(unsigned int ln_count, char *line, stack_t *stack);
+int monty_helper(unsigned int ln_count, char *line, stack_t **stack);
+int line_helper(FILE *fd, stack_t **stack);
 
 /*_____GLOBAL_VAR___________________________*/
 extern int num;

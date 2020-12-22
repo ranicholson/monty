@@ -4,10 +4,10 @@
  * @ln_count: this is the line count that the error occured
  * @code: This is an integer that corresponds with the error
  */
-void malloc_error(void)
+int malloc_error(void)
 {
         fprintf(stderr, "Error: malloc failed\n");
-        exit(EXIT_FAILURE);
+        return (-1);
 }
 /**
  * arg_error - This function is called when not enought arguments are found or no file is given
@@ -34,7 +34,7 @@ void open_error(char *arg)
  * @ln_count: this is the corresponding line that contained an invalid opcode
  * Return: Void
  */
-void invalid_opcode(char *opcode, unsigned int ln_count)
+int invalid_opcode(char *opcode, unsigned int ln_count)
 {
 	if (strcmp(opcode, "push") == 0)
 	{
@@ -45,5 +45,5 @@ void invalid_opcode(char *opcode, unsigned int ln_count)
 
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
 	free(opcode);
-	exit(EXIT_FAILURE);
-} 
+	return (-1);
+}
