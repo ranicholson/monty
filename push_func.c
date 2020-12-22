@@ -17,7 +17,7 @@ void op_push(stack_t **head, unsigned int n)
 		free_stack(*head);
 		*head = NULL;
 	}
-	else if
+	else
 	{
 		n_node->n = num;
 		n_node->next = tmp;
