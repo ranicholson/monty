@@ -40,7 +40,7 @@ int invalid_opcode(char *opcode, unsigned int ln_count)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", ln_count);
 		free(opcode);
-		exit (EXIT_FAILURE);
+		return (-1);
 	}
 
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
