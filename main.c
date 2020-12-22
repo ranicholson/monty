@@ -8,7 +8,7 @@
 int num = 0;
 int main(int argc, char **argv)
 {
-	char *line = NULL, *opcode = NULL, *tmp_num = NULL, *delim = " \t\n";
+	char *line = NULL, *opcode = NULL, *tmp_num = NULL, *delim = " \t\n\a\b\v\f\r";
 	unsigned int ln_count = 1;
 	size_t bufsize;
 	stack_t *stack;
