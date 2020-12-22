@@ -31,12 +31,12 @@ int main(int argc, char **argv)
 	}
 	for (; read >= 0; ln_count++)
 	{
-		if (strcmp(line, "\n") == 0)
+		if (strcmp(line, "\n") == 0 || line == NULL)
 		{
 			read = getline(&line, &bufsize, fd);
 			continue;
 		}
-		helper1 = monty_helper(ln_count, line, stack);
+		helper1 = monty_helper(ln_count, line, &stack);
 		if (helper1 == -1)
 		{
 			read = getline(&line, &bufsize, fd);
@@ -44,7 +44,10 @@ int main(int argc, char **argv)
 		}
 		if (helper1 == -2)
 		{
+			opcode = strtok(line, "\t\n\a\b\v\f\r");
 			opcode = strdup(opcode);
+			free_stack(stack);
+			free(line);
 			fclose(fd);
 			invalid_opcode(opcode, ln_count);
 		}
@@ -67,20 +70,18 @@ int main(int argc, char **argv)
  * @stack: this is a refrence to the stack linked list
  * Return: is -1 for failure and 0 for success
  */
-int monty_helper(unsigned int ln_count, char *line, stack_t *stack)
+int monty_helper(unsigned int ln_count, char *line, stack_t **stack)
 {
 	char *opcode = NULL, *tmp_num = NULL,  *delim = " \t\n\a\b\v\f\r";
 	void (*func_ptr)(stack_t **, unsigned int);
 
 	opcode = strtok(line, delim);
+
 	if (opcode == NULL)
 		return (-1);
-
 	tmp_num = strtok(NULL, delim);
-
 	if (op_check(opcode, tmp_num) == -1)
 	{
-		free_stack(stack);
 		return (-2);
 	}
 
@@ -88,13 +89,11 @@ int monty_helper(unsigned int ln_count, char *line, stack_t *stack)
 		num = atoi(tmp_num);
 
 	func_ptr = func_select(opcode);
-
 	if (func_ptr == NULL)
 	{
-		free_stack(stack);
 		return (-2);
 	}
-	func_ptr(&stack, ln_count);
+	func_ptr(stack, ln_count);
 	if (stack == NULL)
 	{
 		free(line);
