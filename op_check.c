@@ -26,6 +26,5 @@ int op_check(char *opcode, char *num)
 			idx++;
 		}
 	}
-
 	return (0);
 }

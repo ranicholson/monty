@@ -9,9 +9,6 @@ void op_pall(stack_t **h, unsigned int n)
     stack_t *head = *h;
     (void)n;
 
-    if (n == 1)
-	    return;
-
     while (head->next != NULL)
     {
 	    printf("%d\n", head->n);

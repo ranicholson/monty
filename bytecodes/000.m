@@ -1,12 +1,7 @@
-      pall 
+push 1
+push 1024
+push -0
 push -1
-push -2
-  push 3
-     push 30
-                   pall    
-push 4
-    push 5    
-      push    6    
-      push 60
-      push -10   
-pall 
+push -1024
+pall
+push 123a
