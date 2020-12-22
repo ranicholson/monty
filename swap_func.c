@@ -8,9 +8,17 @@
 void op_swap(stack_t **stack, unsigned int ln_count)
 {
 	stack_t *head = *stack, *tmp = NULL, *current = *stack;
+	int count = 0;
+
 	(void) ln_count;
 
-	if (head->next->next == NULL && head->prev == NULL)
+	while (head != NULL)
+	{
+		head = head->next;
+		++count;
+	}
+	head = *stack;
+	if (count < 3)
 	{
 		free_stack(*stack);
 		*stack = NULL;
