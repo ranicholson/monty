@@ -28,7 +28,6 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	helper = line_helper(fd, &stack);
-	printf("inside main after helper is assigned.\n");
 	if (helper == -1)
 	{
 		fclose(fd);
@@ -51,9 +50,8 @@ int monty_helper(unsigned int ln_count, char *line, stack_t **stack)
 {
 	char *opcode = NULL, *tmp_num = NULL,  *delim = " \t\n\a\b\v\f\r";
 	void (*func_ptr)(stack_t **, unsigned int);
-	printf("inside monty_helper\n");
+
 	opcode = strtok(line, delim);
-	printf("opcode in monty helper: [%s]\n", opcode);
 	if (opcode == NULL)
 		return (-1);
 	tmp_num = strtok(NULL, delim);
@@ -71,7 +69,7 @@ int monty_helper(unsigned int ln_count, char *line, stack_t **stack)
 		return (-2);
 	}
 	func_ptr(stack, ln_count);
-	if (stack == NULL)
+	if (*(stack) == NULL)
 	{
 		return (-3);
 	}
