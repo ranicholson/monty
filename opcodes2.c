@@ -36,11 +36,17 @@ void op_push(stack_t **head, unsigned int n)
 void op_rotr(stack_t **stack, unsigned int ln_count)
 {
 	stack_t *last = *stack, *tmp = NULL, *current = *stack;
+	int x = 0;
 	(void)ln_count;
 
-	if (current->next == NULL || current->next->next == NULL)
+	while (current->next != NULL)
+	{
+		current = current->next;
+		x++;
+	}
+	current = *stack;
+	if (current->next == NULL || current->next->next == NULL || x < 3)
 		;
-
 	else
 	{
 		while (last->next->next != NULL)
