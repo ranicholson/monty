@@ -1,3 +1,5 @@
+push 1 
+
 #push
 push 1
 push 2
