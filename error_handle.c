@@ -94,6 +94,11 @@ int invalid_opcode2(char *opcode, unsigned int ln_count)
 		free(opcode);
 		return (-1);
 	}
+	if (opcode[0] == '#')
+	{
+		free(opcode);
+		return (0);
+	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
 	free(opcode);
 	return (-1);
