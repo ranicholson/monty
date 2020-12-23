@@ -65,8 +65,8 @@ void op_pchar(stack_t **stack, unsigned int ln_count)
 			free_stack(*stack);
 			*stack = NULL;
 		}
-
-		printf("%c\n", head->n);
+		else
+			printf("%c\n", head->n);
 	}
 }
 
