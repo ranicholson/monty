@@ -68,4 +68,6 @@ void op_div(stack_t **stack, unsigned int ln_count);
 void op_mul(stack_t **stack, unsigned int ln_count);
 void op_mod(stack_t **stack, unsigned int ln_count);
 void op_pchar(stack_t **stack, unsigned int ln_count);
+void op_rotr(stack_t **stack, unsigned int ln_count);
+
 #endif

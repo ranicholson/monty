@@ -28,6 +28,35 @@ void op_push(stack_t **head, unsigned int n)
 }
 
 /**
+ * op_rotr - moves last element of stack to the top
+ * @stack: stack to move element in
+ * @ln_count: line count
+ */
+
+void op_rotr(stack_t **stack, unsigned int ln_count)
+{
+	stack_t *last = *stack, *tmp = NULL, *current = *stack;
+	(void)ln_count;
+
+	if (current->next == NULL || current->next->next == NULL)
+		;
+
+	else
+	{
+		while (last->next->next != NULL)
+			last = last->next;
+		printf("last: %d\n", last->n);
+		current->prev = last;
+		tmp = last->prev;
+		tmp->next = last->next;
+		last->next->prev = tmp;
+		last->next = current;
+		last->prev = NULL;
+		*stack = last;
+	}
+}
+
+/**
  * op_swap - Swaps top nodes of a linked list
  * @stack: this is the stack reference
  * @ln_count: this is line count
