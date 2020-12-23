@@ -64,7 +64,7 @@ int invalid_opcode(char *opcode, unsigned int ln_count)
 		free(opcode);
 		return (-1);
 	}
-	if (strcmp(opcode, "div") == 0)
+	if (strcmp(opcode, "div") == 0 || strcmp(opcode, "mod") == 0)
 	{
 		if (num == 0)
 		{
@@ -72,7 +72,7 @@ int invalid_opcode(char *opcode, unsigned int ln_count)
 			free(opcode);
 			return (-1);
 		}
-		fprintf(stderr, "L%d: can't div, stack too short\n", ln_count);
+		fprintf(stderr, "L%d: can't %s, stack too short\n", ln_count, opcode);
 		free(opcode);
 		return (-1);
 	}
