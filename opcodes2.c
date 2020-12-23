@@ -45,7 +45,6 @@ void op_rotr(stack_t **stack, unsigned int ln_count)
 	{
 		while (last->next->next != NULL)
 			last = last->next;
-		printf("last: %d\n", last->n);
 		current->prev = last;
 		tmp = last->prev;
 		tmp->next = last->next;
