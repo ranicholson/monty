@@ -28,7 +28,7 @@ void op_pchar(stack_t **stack, unsigned int ln_count)
 
 	else
 	{
-		if (head->n > 127 || head->n < 0)
+		if (head->n > 127 || head->n <= 0)
 		{
 			num = 8888;
 			free_stack(*stack);
