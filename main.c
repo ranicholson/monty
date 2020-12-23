@@ -52,6 +52,9 @@ int monty_helper(unsigned int ln_count, char *line, stack_t **stack)
 	void (*func_ptr)(stack_t **, unsigned int);
 
 	opcode = strtok(line, delim);
+	if (opcode[0] == '#')
+		return (0);
+
 	if (opcode == NULL)
 		return (-1);
 	tmp_num = strtok(NULL, delim);
