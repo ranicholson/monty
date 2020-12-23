@@ -94,8 +94,20 @@ int invalid_opcode2(char *opcode, unsigned int ln_count)
 		free(opcode);
 		return (-1);
 	}
+	if (strcmp(opcode, "pchar") == 0)
+	{
+		if (num == 8888)
+		{
+			fprintf(stderr, "L%d: can't pchar, value out of range\n"
+				, ln_count);
+			free(opcode);
+			return (-1);
+		}
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", ln_count);
+		free(opcode);
+		return (-1);
+	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", ln_count, opcode);
 	free(opcode);
 	return (-1);
-
 }

@@ -72,5 +72,7 @@ int str_cmp_opcode(char *opcode2)
 		return (-1);
 	if (strcmp(opcode2, "mod") == 0)
 		return (-1);
+	if (strcmp(opcode2, "pchar") == 0)
+		return (-1);
 	return (0);
 }
